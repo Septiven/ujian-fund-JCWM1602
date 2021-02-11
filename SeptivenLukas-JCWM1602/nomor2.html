@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor 2</title>
+</head>
+<body>
+    <h1><b>DERET FIBONANCI</b></h1>
+    Masukan angka: <input type="text" placeholder="masukan angka" id="input-angka">
+    <br><br>
+    <input type="button" value="Show" id="button-show">
+    <input type="button" value="Ganjil" id="button-ganjil">
+    <input type="button" value="Genap" id="button-genap">
+    <br>
+    <h1><b>RESULT:</b></h1>
+    <h3 id='resultAkhir'></h3>
+</body>
+
+<script>
+    let getAngka = document.getElementById("input-angka")
+    let getShow =document.getElementById("button-show")
+    let getGanjil =document.getElementById("button-ganjil")
+    let getGenap =document.getElementById("button-genap")
+
+    // show
+    getShow.addEventListener('click',Show)
+    function Show (getAngka){
+        let outputshow = ''
+
+        for(let a=0;outputshow<=getAngka;a++){
+            if(a==0){
+                outputshow = 0
+            }else if(a==1){
+                outputshow += 1
+            }else if(a>1){
+                outputshow += (outputshow[a-2] +outputshow[a-1])
+            }
+        }
+        let hasilnya = document.getElementById('resultAkhir')
+        hasilnya.innerHTML = `${outputshow}`
+        return outputshow
+    }
+
+    // ganjil (blom selesai)
+    // getGanjil.addEventListener('click',Ganjil)
+    // function Ganjil (getAngka){
+    //     let outputganjil = ''
+
+    //     for(let a=0;a<=getAngka;a++){
+    //         if(a==0){
+    //             outputganjil = 1
+    //         }else if(a==1){
+    //             outputganjil += 1
+    //         }else if(a>1){
+    //             outputganjil += (outputshow[a-2] +outputshow[a-1])
+    //         }else {}
+            
+    //     }let hasilnya = document.getElementById('resultAkhir')
+    //         hasilnya.innerHTML = `${outputganjil}`
+    //         return outputganjil
+    // }
+
+    // genap
+    // getGenap.addEventListener('click',Genap)
+    // function Genap (getAngka){
+    //     let outputgenap = ''
+
+    //     for(let a=0;a<=getAngka;a++){
+    //         if(a==0){
+    //             outputgenap = 1
+    //         }else if(a==1){
+    //             outputgenap += 1
+    //         }else if(a>1){
+    //             outputgenap += (outputgenap[a-2] +outputgenap[a-1])
+    //         }else {}
+            
+    //     }let hasilnya = document.getElementById('resultAkhir')
+    //         hasilnya.innerHTML = `${outputgenap}`
+    //         return outputgenap
+    // }
+
+</script>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor 3</title>
+    <style>
+        #table-users, thead,tbody,th,tr,td{
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <label>
+            <h1><b>FORM USERS</b></h1>
+        </label>
+        <input type="text" name="user-name" placeholder="username" class="input"><input type="text" name="user-email" placeholder="email" class="input">
+        role<input type="text" name="Role" placeholder="Role" class="input">
+        <br><br>
+        <input type="button" name="submit" value="ADD USER" id="submit-data"
+        
+        <label>
+            <h1><b>USERS DATA</b></h1>
+        </label>
+
+        <table id="table-users">
+            <thead>
+                <tr>
+                    <th><center><b>No</b></center></th>
+                    <th><center><b>Username</b></center></th>
+                    <th><center><b>Email</b></center></th>
+                    <th><center><b>Role</b></center></th>
+                    <th><b>Action</b></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <h3 id="error-message"></h3>
+    </fieldset>
+    
+    
+</body>
+
+    <script>
+        let dataUsers = [
+            {Username: "Alee",Email: "Alee@gmail.com", Role: "admin"},
+            {Username: "jennie",Email: "jenniebp@gmail.com", Role: "users"},
+            {Username: "Elsa",Email: "elsa@disney.com", Role: "users"}
+        ]
+
+
+// show data users
+        function showDataUsers (index){
+            let getTable = document.getElementById("table-users")
+            let getTbody = document.getElementsByTagName("tbody")[0]
+
+            let tr = ''
+    for(let i=0; i < dataUsers.length; i++){
+        if(i == index){tr += `
+            <tr>
+                    <td>
+                        <center>${i+1}</center>
+                    </td> 
+                    <td>
+                        <center><input type="text" name="Username" value="${dataUsers[index].Username}" class="input-edit-Users"></center>
+                    </td>
+                    <td>
+                        <center><input type="text" name="User-email" value="${dataUsers[index].Email}" class="input-edit-Users"></center>
+                    </td>
+                    <td>
+                        <center><input type="text" name="role" value="${dataUsers[index].Role}" class="input-edit-Users"></center>
+                    </td>
+                    <td>
+                        <center>
+                            <input type="button" name="button-save" value="Save" onClick="onSaveUsers(${index})">
+                            <input type="button" name="button-cancel" value="Cancel" onClick="showDataUsers()">
+                        </center>
+                    </td>
+            </tr> `}
+            else{tr += `
+                <tr>
+                    <td>
+                        <center>${i+1}</center>
+                    </td> 
+                    <td>
+                        <center>${dataUsers[i].Username}</center>
+                    </td>
+                    <td>
+                        <center>${dataUsers[i].Email}</center>
+                    </td>
+                    <td>
+                        <center>${dataUsers[i].Role}</center>
+                    </td>
+                    <td>
+                        <center>
+                            <input type="button" name="button-edit" value="Edit" onClick="editUsers(${i})">
+                            <input type="button" name="button-delete" value="Delete" onClick="deleteUsers(${i})">
+                        </center>
+                    </td>
+                </tr> 
+            `}
+    }getTbody.innerHTML = tr
+}
+    showDataUsers()
+    
+// tambah
+    function addDataUsers(){
+    let inputs = document.getElementsByClassName('input')
+
+    let Username = inputs[0].value
+    let Email = inputs[1].value
+    let Role = inputs[2].value
+    
+    if(Username && Email && Role){
+        dataUsers.push({
+            Username: Username,
+            Email: Email,
+            Role: Role
+        })
+
+        showDataUsers()
+
+        inputs[0].value = ''
+        inputs[1].value = ''
+        inputs[2].value = ''
+    }else{
+        let errorMessage = document.getElementById('error-message')
+        errorMessage.innerHTML = 'Data Must Be Filled!'
+    }
+}
+
+document.getElementById('submit-data').addEventListener('click', addDataUsers)
+
+// delete
+function deleteUsers(i){
+        dataUsers.splice(i, 1)
+
+        showDataUsers()
+    }
+
+// edit
+function editUsers(i){
+        showDataUsers(i)
+}
+
+// save
+function onSaveUsers(index){
+    let inputs = document.getElementsByClassName('input-edit-Users')
+    
+    let Username = inputs[0].value
+    let Email = inputs[1].value
+    let Role = inputs[2].value
+
+    if(Username && Email && Role){
+        dataUsers[index].Username = Username
+        dataUsers[index].Email = Email
+        dataUsers[index].Role = Role
+
+        showDataUsers()
+    }
+}
+
+    
+    </script>
+
+</html>

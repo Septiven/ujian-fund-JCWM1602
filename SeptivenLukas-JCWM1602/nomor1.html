@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nomor 1</title>
+</head>
+<body>
+    <h1><b>PATTERN</b></h1><br>
+    <input type="number" name="input-angka" placeholder="masukan angka" id="input">
+    <br><br>
+    <input type="button" name="button-ganjil" value="GANJIL" id="button-ganjil"><input type="button" value="HURUF" id="button-huruf">
+    <br><br>
+    <h1><b>RESULT</b></h1>
+    <h3 id="result"></h3>
+</body>
+
+<script>
+    let getAngka = Number(document.getElementById("input"))
+
+    // button ganjil
+    let getButtonGanjil = document.getElementById("button-ganjil")
+    getButtonGanjil.addEventListener('click',patternsegitiga)
+
+    function patternsegitiga (getAngka){
+        let output =""
+        let nomornya = 0
+
+    for(let i=1;i<=getAngka;i++){
+        for(let j=1;j<=i;j++){
+            if(i==1){
+                nomornya = 1
+                output += `${i} `
+            }else{
+                nomornya = nomornya+2
+                output += `${nomornya+2} `
+            }
+        }output += '\n'
+    }
+    let result= document.getElementById('result')
+    result.innerHTML = `${output}`
+    return output
+}
+
+
+// button huruf (blom selesai)
+// let getButtonHuruf = document.getElementById("button-huruf")
+// getButtonHuruf.addEventListener('click',patternHuruf)
+// function patternHuruf (getAngka){
+//     let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+//     let output =''
+
+//    let hurufnya = ''
+
+//    for(let i=1;i<=getAngka;i++){
+//        for(let j=1;j<=i;j++){
+//            if(i==1){
+//                hurufnya += 'b'
+//                output += 'b'
+//            }else{
+//             hurufnya += alphabet.indexOf(i+2)
+//                output += `${alphabet.indexOf(i+2)} `
+//            }
+//        }output += '\n'
+//    }let result = document.getElementsByTagName('h3')
+//     result.innerHTML = `${output}`
+
+//     return result
+// }
+
+</script>
+
+</html>
